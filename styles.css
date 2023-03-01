@@ -21,6 +21,11 @@ h1 {
     text-transform: uppercase;
 }
 
+h2 {
+    font-size: 20px;
+    color: rgb(75, 194, 75);
+}
+
 .container {
     padding: 40px;
     height: 100vh;
