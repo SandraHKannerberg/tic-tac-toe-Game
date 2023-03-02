@@ -12,6 +12,7 @@ let spaces = Array(9).fill(null);
 
 //Eventlistener to each of our 9 boxes
 const startGame = () => {
+    playerText.innerText = `${currentPlayer}'s turn`
     boxes.forEach(box => box.addEventListener('click', boxClicked))
 }
 
@@ -27,10 +28,12 @@ function boxClicked(e) {
             let winning_blocks = playerHasWon()
 
             winning_blocks.map(box => boxes[box].style.backgroundColor=winnerIndicator)
+            boxes.forEach(box => box.style.pointerEvents = 'none')
             return
         }
 
         currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
+        playerText.innerText = `${currentPlayer}'s turn`
     }
 }
 
