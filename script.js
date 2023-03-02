@@ -22,7 +22,7 @@ function boxClicked(e) {
     if(!spaces[id]){
         spaces[id] = currentPlayer;
         e.target.innerText = currentPlayer;
-
+        
         if(playerHasWon() !==false){
             playerText.innerText = `Congratulations! ${currentPlayer} has won!`
             let winning_blocks = playerHasWon()
@@ -30,10 +30,14 @@ function boxClicked(e) {
             winning_blocks.map(box => boxes[box].style.backgroundColor=winnerIndicator)
             boxes.forEach(box => box.style.pointerEvents = 'none')
             return
-        }
+        } 
 
         currentPlayer = currentPlayer == X_TEXT ? O_TEXT : X_TEXT
-        playerText.innerText = `${currentPlayer}'s turn`
+        playerText.innerText = `${currentPlayer}'s turn`;
+        
+        if (!spaces.includes(null)){
+            playerText.innerText = "The game ended with a draw. Please restart"
+        }
     }
 }
 
@@ -69,9 +73,9 @@ function restart() {
         box.style.backgroundColor = '';
     })
 
-    playerText = '';
-
     currentPlayer = X_TEXT; //back to defaultplayer
+    playerText.innerText = `${currentPlayer}'s turn`;
+    startGame();
 }
 
 startGame();
