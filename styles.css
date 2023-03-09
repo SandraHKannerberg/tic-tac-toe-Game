@@ -78,3 +78,23 @@ button:hover {
     cursor: pointer;
     transform: translateY(-2px);
 }
+
+@media screen and (max-width: 450px){
+
+    h1{
+        font-size: 40px;
+    }
+
+    #gameboard {
+        width: 300px;
+    }
+
+    .box {
+        height: 100px;
+        width: 100px;
+    }
+}
+
+
+
+
