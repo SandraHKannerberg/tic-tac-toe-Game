@@ -10,10 +10,28 @@ const X_TEXT = "X";
 let currentPlayer = X_TEXT;//defaultplayer
 let spaces = Array(9).fill(null);
 
+restartBtn.addEventListener('click', restart)
+
 //Eventlistener to each of our 9 boxes
 const startGame = () => {
     playerText.innerText = `${currentPlayer}'s turn`
     boxes.forEach(box => box.addEventListener('click', boxClicked))
+}
+
+startGame();
+
+function restart() {
+
+    spaces.fill(null)
+
+    boxes.forEach(box => {
+        box.innerText = '';
+        box.style.backgroundColor = '';
+        box.style.pointerEvents = 'auto';
+    })
+
+    currentPlayer = X_TEXT; //back to defaultplayer
+    startGame();
 }
 
 function boxClicked(e) {
@@ -27,7 +45,7 @@ function boxClicked(e) {
             playerText.innerText = `Congratulations! ${currentPlayer} has won!`
             let winning_blocks = playerHasWon()
 
-            winning_blocks.map(box => boxes[box].style.backgroundColor=winnerIndicator)
+            winning_blocks.map(box => boxes[box].style.backgroundColor = winnerIndicator)
             boxes.forEach(box => box.style.pointerEvents = 'none')
             return
         } 
@@ -37,6 +55,7 @@ function boxClicked(e) {
         
         if (!spaces.includes(null)){
             playerText.innerText = "The game ended with a draw. Please restart"
+            gameEnded = true;
         }
     }
 }
@@ -62,20 +81,3 @@ function playerHasWon() {
     }
     return false
 }
-
-restartBtn.addEventListener('click', restart)
-
-function restart() {
-    spaces.fill(null)
-
-    boxes.forEach(box => {
-        box.innerText = '';
-        box.style.backgroundColor = '';
-    })
-
-    currentPlayer = X_TEXT; //back to defaultplayer
-    playerText.innerText = `${currentPlayer}'s turn`;
-    startGame();
-}
-
-startGame();
